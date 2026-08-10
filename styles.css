@@ -1,0 +1,584 @@
+/* ============================================
+   1. CUSTOM PROPERTIES (CSS variables)
+   Defined once on :root, used everywhere below.
+   Change a value here and it updates the whole site.
+   ============================================ */
+:root {
+  --bg: #f6ecdc;
+  --bg-alt: #ecdec2;
+  --text: #3c2a1a;
+  --text-muted: #8a6a4c;
+  --accent: #c1622d;      /* burnt orange accent, used sparingly */
+  --border: #d9c6a3;
+
+  /* Scoped to the header/hero (about) area only — see section 3 & 4 below.
+     Names kept as-is from an earlier purple theme; values are now warm brown/orange. */
+  --hero-purple: #9c4a1f;
+  --hero-purple-dim: #7d3b18;
+  --hero-grey: #a88a63;
+
+  --max-width: 960px;
+  --radius: 10px;
+
+  --font-body: 'Share Tech Mono', 'Courier New', monospace; /* hacker/terminal — now used for all body text */
+  --font-display: 'Share Tech Mono', monospace;
+  --font-title: 'Reggae One', sans-serif; /* Japanese graffiti/manga-style display font, for headings */
+}
+
+/* ============================================
+   2. RESET
+   Browsers apply their own default margins/box-sizing.
+   This normalizes things so layout is predictable.
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* native smooth scroll for #anchor links */
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section[id] {
+  scroll-margin-top: 92px; /* buffer for the sticky header, which can now wrap to 2 lines */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* All headings share the same monospace "hacker terminal" font.
+   Sizes stay per-element (set further down) — only the typeface is unified here. */
+h1, h2, h3 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================
+   3. HEADER / NAV
+   position: sticky keeps it pinned as you scroll.
+   Flexbox handles the horizontal alignment.
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(246, 236, 220, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hero-grey);
+}
+
+.nav-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: clamp(0.75rem, 2vw, 1.05rem);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  max-width: 60%; /* leaves room for nav-links/hamburger without overlap */
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--hero-purple);
+}
+
+/* Hamburger button — hidden on desktop, shown on mobile via media query below */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  display: block;
+}
+
+/* ============================================
+   4. HERO
+   ============================================ */
+.hero {
+  padding: 120px 0 60px;
+  text-align: left;
+}
+
+.eyebrow {
+  color: var(--hero-grey);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+/* The bordered "outline" box wrapping the name + major.
+   display: inline-block so the border hugs the content, not the full row width.
+   Dark background here so white text stays readable against the beige page. */
+.hero-name-box {
+  display: inline-block;
+  background: #2a1c11;
+  border: 1px solid var(--hero-grey);
+  border-radius: var(--radius);
+  padding: 28px 36px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 8px;
+  white-space: nowrap; /* keeps the typed text from wrapping mid-animation */
+}
+
+.hero-major {
+  font-size: 1rem;
+  color: #e8ddd0;
+}
+
+/* Blinking cursor: a thin vertical bar that fades in/out on a loop.
+   steps(1) makes it snap instantly rather than fade smoothly, like a real cursor. */
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: #ffffff;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-subtitle {
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.hero-meta {
+  color: var(--hero-grey);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0f1115;
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* ============================================
+   5. SECTIONS (generic)
+   ============================================ */
+.section {
+  padding: 80px 0;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+/* ============================================
+   6. EXPERIENCE TIMELINE
+   ============================================ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.timeline-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden; /* clips the track so only one panel shows at a time */
+}
+
+/* The "window" is what you see: a fixed-height peephole.
+   Both panels share this exact height, so the window never
+   needs to resize — it just reveals a different fixed-size panel. */
+.reveal-window {
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* The track holds both panels stacked vertically (460px tall total).
+   Sliding it up by exactly one window-height swaps which panel shows —
+   the core trick behind this whole effect. */
+.reveal-track {
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.reveal-window.revealed .reveal-track {
+  transform: translateY(-230px);
+}
+
+.reveal-panel {
+  height: 230px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto; /* safety net if a job's bullet list runs long */
+}
+
+.reveal-title {
+  align-items: center;
+  text-align: center;
+}
+
+.reveal-title h3 {
+  font-size: clamp(1.8rem, 5.5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.reveal-detail {
+  justify-content: flex-start;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.timeline-header h3 {
+  font-size: 1.3rem;
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.timeline-org {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.timeline-item ul {
+  padding-left: 18px;
+}
+
+.timeline-item li {
+  list-style: disc;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   7. PROJECTS — HORIZONTAL SCROLL-SNAP CAROUSEL
+   scroll-snap-type makes the browser "snap" to each card's
+   left edge as you scroll, instead of stopping mid-card.
+   ============================================ */
+.project-scroller {
+  position: relative;
+}
+
+.project-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0;
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.project-track::-webkit-scrollbar {
+  display: none; /* hide scrollbar in Chrome/Safari */
+}
+
+.project-card {
+  flex: 0 0 100%; /* each card takes the FULL width of the track */
+  scroll-snap-align: start;
+  padding: 32px;
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+  max-width: 640px;
+}
+
+.project-detail {
+  font-size: 0.9rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-list li {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+
+/* The next-project button, pinned to the right edge of the section */
+.scroller-next {
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--hero-grey);
+  background: var(--bg);
+  color: var(--hero-purple);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroller-next:hover {
+  background: var(--bg-alt);
+}
+
+/* ============================================
+   8. SKILLS
+   ============================================ */
+.skills-wrap {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.skill-group h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   9. FOOTER
+   ============================================ */
+.site-footer {
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.site-footer a {
+  color: var(--accent);
+}
+
+.footer-note {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   9b. CONTACT FORM
+   ============================================ */
+.contact-form {
+  max-width: 480px;
+  margin: 0 auto 32px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.form-row input,
+.form-row textarea {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--hero-purple);
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--hero-purple);
+  min-height: 1.2em; /* reserves space so layout doesn't jump when the note appears */
+}
+
+/* ============================================
+   9c. SOCIAL LINKS
+   ============================================ */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.social-links a {
+  font-size: 0.95rem;
+  color: var(--hero-purple);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.social-links a:hover {
+  border-bottom-color: var(--hero-purple);
+}
+
+/* ============================================
+   10. MOBILE — everything below this line only
+   applies when the screen is 720px or narrower
+   ============================================ */
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 16px;
+    display: none; /* JS toggles this to flex */
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hero {
+    padding: 90px 0 60px;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

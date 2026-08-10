@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anirudh Kaushik — Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Reggae+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER: sticky nav bar, same on every "page" (single-page site) -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="#top" class="logo">Im smarter AND bigger then you</a>
+
+      <!-- Hamburger button, only visible on mobile. JS will toggle .open on nav-links -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / ABOUT -->
+  <section id="about" class="hero">
+    <div class="container">
+      <p class="eyebrow">Computer Science &amp; full-stack development</p>
+      <div class="hero-name-box">
+        <!-- Empty on load — script.js fills this in char-by-char -->
+        <h1 id="typedName"><span id="typedText"></span><span class="cursor" aria-hidden="true"></span></h1>
+        <p class="hero-major">Bachelor of Science, Computer Science — Purdue University</p>
+      </div>
+      <p class="hero-subtitle">
+        If im building something you wont know about it
+      </p>
+      <p class="hero-meta">Class of 2028 &middot; Founder, Game Development Club &middot; Indianapolis, IN</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="timeline">
+
+        <article class="timeline-item">
+          <div class="reveal-window">
+            <div class="reveal-track">
+              <div class="reveal-panel reveal-title">
+                <h3>TennisHackery</h3>
+              </div>
+              <div class="reveal-panel reveal-detail">
+                <div class="timeline-header">
+                  <h3>Web Developer / Intern</h3>
+                  <span class="timeline-date">Jan 2024 – Jun 2025</span>
+                </div>
+                <p class="timeline-org">TennisHackery — Fremont, California</p>
+                <ul>
+                  <li>Built a Discord bot that pulls the latest videos from the company's YouTube channel to boost member engagement.</li>
+                  <li>Built a website that mirrors a tennis podcast's Spotify playlist in real time, auto-updating whenever a new episode drops.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="reveal-window">
+            <div class="reveal-track">
+              <div class="reveal-panel reveal-title">
+                <h3>Game Development Club</h3>
+              </div>
+              <div class="reveal-panel reveal-detail">
+                <div class="timeline-header">
+                  <h3>Founder / President</h3>
+                  <span class="timeline-date">Aug 2021 – Jun 2025</span>
+                </div>
+                <p class="timeline-org">Game Development Club — Fremont, California</p>
+                <ul>
+                  <li>Led a team of 6 to ship 6 games on itch.io, each with 100+ plays.</li>
+                  <li>Ran bootcamp sessions teaching advanced C# scripting to 30+ aspiring developers.</li>
+                  <li>Built the club's website in HTML/CSS to showcase live games and members.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="reveal-window">
+            <div class="reveal-track">
+              <div class="reveal-panel reveal-title">
+                <h3>Farewell Well (WhenIDie)</h3>
+              </div>
+              <div class="reveal-panel reveal-detail">
+                <div class="timeline-header">
+                  <h3>App Developer Intern</h3>
+                  <span class="timeline-date">Present</span>
+                </div>
+                <p class="timeline-org">Farewell Well (WhenIDie) — California</p>
+                <ul>
+                  <li>Added quality-of-life features for an older user demographic, including PDF export of all inputted data.</li>
+                  <li>Set up the app's payment pipeline on RevenueCat to secure App Store approval.</li>
+                  <li>Helped build the pitch deck and rollout strategy for customer acquisition.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="project-scroller">
+        <div class="project-track" id="projectTrack">
+
+          <article class="project-card">
+            <h3>SOMNIA — AI Sleep Analysis</h3>
+            <p>
+              Full-stack app using a two-stage XGBoost classifier trained on 272k clinical
+              polysomnography windows — 92% accuracy across four sleep stages using EEG/EMG,
+              and ~75% from phone-camera video alone via optical flow.
+            </p>
+            <p class="project-detail">
+              Engineered an end-to-end pipeline from raw EDF signal processing (MNE, FFT
+              frequency band extraction, SMOTE oversampling) to a FastAPI backend and an
+              interactive web frontend that classifies sleep stages from a phone camera
+              recording using OpenCV dense optical flow as an EMG proxy.
+            </p>
+            <ul class="tag-list">
+              <li>Python</li><li>FastAPI</li><li>XGBoost</li><li>OpenCV</li><li>MNE</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <h3>Indy Relay — Hack Indy</h3>
+            <p>
+              App giving Purdue students free 30-minute e-bike rides anywhere in Indianapolis.
+              Built .edu-only authorization to prevent abuse and scraped public e-bike location
+              data to seed the database.
+            </p>
+            <p class="project-detail">
+              Built during the Hack Indy hackathon on March 29. Handled both the authorization
+              layer restricting signups to .edu accounts and the data scraping pipeline used to
+              seed the app with real e-bike locations across the city.
+            </p>
+            <ul class="tag-list">
+              <li>Python</li><li>Auth</li><li>Web Scraping</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <h3>Diabetes Prediction Algorithm</h3>
+            <p>
+              Support Vector Machine model for early-stage diabetes prediction, built with
+              NumPy, Pandas, and Scikit-Learn, visualized with Matplotlib and Seaborn.
+            </p>
+            <p class="project-detail">
+              Focused on early-stage detection, where signal is weakest — trained and evaluated
+              an SVM classifier on patient data, with Seaborn/Matplotlib used throughout to
+              visualize feature relationships and model performance.
+            </p>
+            <ul class="tag-list">
+              <li>Python</li><li>Scikit-Learn</li><li>Pandas</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <button class="scroller-next" id="projectNext" aria-label="Next project">
+          <span>&rsaquo;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-wrap">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul class="tag-list">
+            <li>Python</li><li>C#</li><li>Java</li><li>C</li><li>HTML/CSS</li><li>Node (PM2)</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Frameworks &amp; Tools</h3>
+          <ul class="tag-list">
+            <li>REST</li><li>React</li><li>FastAPI</li><li>Scikit-Learn</li><li>OpenCV</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" class="site-footer">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+
+      <!-- No backend here, so this can't send silently — it opens the
+           visitor's own email app pre-filled and addressed to me,
+           via a mailto: link built in script.js on submit. -->
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <label for="fromName">Name</label>
+          <input type="text" id="fromName" name="fromName" required />
+        </div>
+        <div class="form-row">
+          <label for="fromEmail">Your Email</label>
+          <input type="email" id="fromEmail" name="fromEmail" required />
+        </div>
+        <div class="form-row">
+          <label for="messageBody">Message</label>
+          <textarea id="messageBody" name="messageBody" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+
+      <div class="social-links">
+        <a href="https://github.com/MrAnitude" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/anirudh-kaushik-275653308/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+      <p class="footer-note">&copy; <span id="year"></span> Anirudh Kaushik</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
